@@ -3,9 +3,9 @@ const cfg = JSON.parse( Umeko.readFile('cmds/cfg.json') )
 
 module.exports.run = async (client,message) => {
 
-    let rainbow = client.emojis.cache.get('941016254133698570');
-
     try {
+
+        let rainbow = client.emojis.cache.get('941016254133698570');
 
         if ( Umeko.fileExists( './././data/blacklist/' + message.author.id + '.txt' ) ){ Umeko.userBL( message.author ); return }
 

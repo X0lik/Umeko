@@ -5,10 +5,10 @@ let reportid = parseInt( Umeko.readFile( './data/reports/report_count.txt' ) ) +
 
 module.exports.run = async (client,message,args) => {
 
-    let report = client.channels.cache.find(channel => channel.id === cfg.reports )
-    let rainbow = client.emojis.cache.get('941016254133698570');
-
     try {
+
+        let report = client.channels.cache.find(channel => channel.id === cfg.reports )
+        let rainbow = client.emojis.cache.get('941016254133698570');
 
         if ( Umeko.fileExists( './data/blacklist/' + message.author.id + '.txt' ) ){ Umeko.userBL( message.author ); return }
         if ( Umeko.fileExists( './data/blacklist/' + message.author.id + '_reports.txt' ) ){ Umeko.userLog( message.guild, message.author, client.user, 'Жалобы', `Вам заблокировали доступ к жалобам!`, `**Причина**: ${ Umeko.readFile('./data/blacklist/' + message.author.id + '_reports.txt') }` ); return }

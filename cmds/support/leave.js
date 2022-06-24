@@ -2,21 +2,25 @@ const cfg = JSON.parse( Umeko.readFile('cmds/cfg.json') )
 
 module.exports.run = async (client,message) => {
 
-    let supportid = cfg.support.split(' ')
+    try{
 
-    if ( supportid.includes( message.author.id ) ) {
+        let supportid = cfg.support.split(' ')
 
-        if ( Umeko.fileExists( './././data/blacklist/' + message.author.id + '.txt' ) ){ Umeko.userBL( message.author ); return }
+        if ( supportid.includes( message.author.id ) ) {
 
-        let server = message.guild
+            if ( Umeko.fileExists( './././data/blacklist/' + message.author.id + '.txt' ) ){ Umeko.userBL( message.author ); return }
 
-        await message.channel.bulkDelete(1)
+            let server = message.guild
 
-        await server.leave()
+            await message.channel.bulkDelete(1)
 
-        Umeko.cmdLog( message.guild, message.author, 'leave', args.join(' ') )
+            await server.leave()
 
-    }
+            Umeko.cmdLog( message.guild, message.author, 'leave', args.join(' ') )
+
+        }
+
+    } catch (err){ Umeko.catchError( 'leave.js', err, cfg.errlog ) }
 
 };
 

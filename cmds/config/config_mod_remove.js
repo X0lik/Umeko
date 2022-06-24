@@ -4,10 +4,10 @@ let rdata
 
 module.exports.run = async (client,message,args) => {
 
-    let rainbow = client.emojis.cache.get('941016254133698570');
-    let role = message.mentions.roles.first()
-
     try {
+
+        let rainbow = client.emojis.cache.get('941016254133698570');
+        let role = message.mentions.roles.first()
 
         await message.channel.bulkDelete(1)
 

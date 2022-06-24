@@ -3,15 +3,15 @@ const cfg = JSON.parse( Umeko.readFile('cmds/cfg.json') )
 
 module.exports.run = async (client,message,args) => {
 
-    let server = args[0]
-    let reason = args.slice(1).join(" ");
-    let supportid = cfg.support.split(' ')
-
     try {
+
+        let server = args[0]
+        let reason = args.slice(1).join(' ');
+        let supportid = cfg.support.split(' ')
 
         if ( Umeko.fileExists( './././data/blacklist/' + message.author.id + '.txt' ) ){ Umeko.userBL( message.author ); return }
 
-        if (reason === '' || reason === undefined){ Umeko.wrongArgs( 'Нужно ввести причину', message.channel ); return }
+        if ( reason === '' || reason === undefined ){ Umeko.wrongArgs( 'Нужно ввести причину', message.channel ); return }
 
         await message.channel.bulkDelete(1)
 

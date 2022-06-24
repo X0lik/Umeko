@@ -2,11 +2,11 @@ const cfg = JSON.parse( Umeko.readFile('cmds/cfg.json') )
 
 module.exports.run = async (client,message,args) => {
 
-    let user = message.mentions.users.first()
-    let reason = args.slice(1).join(" ");
-    let supportid = cfg.support.split(' ')
-
     try {
+
+        let user = message.mentions.users.first()
+        let reason = args.slice(1).join(" ");
+        let supportid = cfg.support.split(' ')
 
         if ( Umeko.fileExists( './././data/blacklist/' + message.author.id + '.txt' ) ){ Umeko.userBL( message.author ); return }
 

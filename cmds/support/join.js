@@ -11,6 +11,7 @@ module.exports.run = async (client,message) => {
         channel.join()
 
         Umeko.cmdLog( message.guild, message.author, 'join', args.join(' ') )
+        
     } catch (err){ Umeko.catchError( 'join.js', err, cfg.errlog ) }
 
 };

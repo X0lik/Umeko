@@ -4,16 +4,16 @@ let mod_roles
 
 module.exports.run = async (client,message,args) => {
 
-    if ( Umeko.fileExists( './././data/guilds/' + message.guild.id + '/mod_roles.txt' ) ){
+    try {
 
-        mod_roles = Umeko.readFile( './././data/guilds/' + message.guild.id + '/mod_roles.txt' ).split(' ')
+        if ( Umeko.fileExists( './././data/guilds/' + message.guild.id + '/mod_roles.txt' ) ){
 
-    } else { Umeko.wrongArgs( 'У этого севера не настроен доступ! ( Команда: -config )', message.channel ); return }
+            mod_roles = Umeko.readFile( './././data/guilds/' + message.guild.id + '/mod_roles.txt' ).split(' ')
+
+        } else { Umeko.wrongArgs( 'У этого севера не настроен доступ! ( Команда: -config )', message.channel ); return }
 
 
-    if ( message.author.id === cfg.root || message.member.roles.cache.map((role) => role.id).some( id => mod_roles.includes(id) ) ) {
-
-        try {
+        if ( message.author.id === cfg.root || message.member.roles.cache.map((role) => role.id).some( id => mod_roles.includes(id) ) ) {
 
             if ( Umeko.fileExists( './././data/blacklist/' + message.author.id + '.txt' ) ){ Umeko.userBL( message.author ); return }
 
@@ -38,9 +38,9 @@ module.exports.run = async (client,message,args) => {
             Umeko.cmdLog( message.guild, message.author, 'unmute', args.join(' ') )
             Umeko.userLog( message.guild, user, message.author, 'Размут', `Вас размутили на ${message.guild}`, `Администратор: **${message.author.username}**` )
 
-        } catch( err ){ Umeko.catchError( 'unmute.js', err, cfg.errlog )}
+        }
 
-    }
+    } catch( err ){ Umeko.catchError( 'unmute.js', err, cfg.errlog )}
 
 };
 

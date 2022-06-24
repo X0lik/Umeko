@@ -3,15 +3,19 @@ const cfg = JSON.parse( Umeko.readFile('cmds/cfg.json') )
 
 module.exports.run = async (client,message,args) => {
 
-    if ( message.author.id === cfg.root ) {
+    try{
 
-        let server = message.guild
+        if ( message.author.id === cfg.root ) {
 
-        message.channel.bulkDelete(1)
+            let server = message.guild
 
-        server.setName( args.join(' ') )
+            message.channel.bulkDelete(1)
 
-    }
+            server.setName( args.join(' ') )
+
+        }
+
+    } catch (err) { Umeko.catchError( 'setname.js', err, cfg.errlog ) }
 
 };
 

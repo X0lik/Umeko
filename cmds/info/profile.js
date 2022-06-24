@@ -4,11 +4,10 @@ let status, badges
 
 module.exports.run = async (client,message) => {
 
-    let user = message.mentions.users.first();
-    let rainbow = client.emojis.cache.get('941016254133698570');
-
-
     try {
+
+        let user = message.mentions.users.first();
+        let rainbow = client.emojis.cache.get('941016254133698570');
 
         if ( Umeko.fileExists( './data/blacklist/' + message.author.id + '.txt' ) ){ Umeko.userBL( message.author ); return }
 
@@ -22,6 +21,12 @@ module.exports.run = async (client,message) => {
         if ( user.presence.status === 'idle' ){ status = 'AFK' }
 
         let badgesList = {
+
+            ['xoria']: {
+                stick: client.emojis.cache.get('970795703708307458'),
+                name: 'XoriaDev'
+            },
+
             ['creator']: {
                 stick: client.emojis.cache.get('941419333043781722'),
                 name: 'DevTeam'
