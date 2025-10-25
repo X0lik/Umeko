@@ -1,5 +1,5 @@
-# Umeko
-Discord bot | Fun, Mod, Config, Support
+# Umeko | Helper for your server
+Discord bot - Fun, Mod, Config, Support
 Bot for Discord on JavaScript.
 
 !WARNING!
